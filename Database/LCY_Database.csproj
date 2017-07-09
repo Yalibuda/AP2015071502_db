@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1435D2E-7230-4F6D-B53B-445EE8A85FCA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LCY_Database</RootNamespace>
+    <AssemblyName>LCY_Database</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.3.0.3\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BgWorkerArgs.cs" />
+    <Compile Include="DataGridViewComboCellEventArgs.cs" />
+    <Compile Include="DLLInterop\About.cs" />
+    <Compile Include="DLLInterop\CreateExpTable.cs" />
+    <Compile Include="DLLInterop\DataManagerTool.cs" />
+    <Compile Include="DLLInterop\DataQueryTool.cs" />
+    <Compile Include="DLLInterop\IDataManagerTool.cs" />
+    <Compile Include="DLLInterop\IDataQuery.cs" />
+    <Compile Include="DLLInterop\IMyApp.cs" />
+    <Compile Include="DLLInterop\Config.cs" />
+    <Compile Include="FrmCreateTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCreateTable.Designer.cs">
+      <DependentUpon>FrmCreateTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCustomEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCustomEditor.Designer.cs">
+      <DependentUpon>FrmCustomEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogon.Designer.cs">
+      <DependentUpon>FrmLogon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOption.Designer.cs">
+      <DependentUpon>FrmOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProgress.Designer.cs">
+      <DependentUpon>FrmProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuery.Designer.cs">
+      <DependentUpon>FrmQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectFormula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectFormula.Designer.cs">
+      <DependentUpon>FrmSelectFormula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectLot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectLot.Designer.cs">
+      <DependentUpon>FrmSelectLot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectProd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectProd.Designer.cs">
+      <DependentUpon>FrmSelectProd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectProperty.Designer.cs">
+      <DependentUpon>FrmSelectProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectSeq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectSeq.Designer.cs">
+      <DependentUpon>FrmSelectSeq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTest.Designer.cs">
+      <DependentUpon>FrmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpload.Designer.cs">
+      <DependentUpon>FrmUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IItem.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="LCY_DBTools\DBTool.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ITool.cs" />
+    <Compile Include="ReportBuilder\ExperimentTable.cs" />
+    <Compile Include="ReportBuilder\XlReportBuilder.cs" />
+    <Compile Include="Testplan.cs" />
+    <Compile Include="Tool.cs" />
+    <Compile Include="Tools\DialogAppraiser.cs" />
+    <Compile Include="Tools\DrawingTool.cs" />
+    <Compile Include="Tools\ItemFunction.cs" />
+    <Compile Include="Tools\ListViewItemComparer.cs" />
+    <Compile Include="Tools\MtbTools.cs" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCreateTable.resx">
+      <DependentUpon>FrmCreateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCustomEditor.resx">
+      <DependentUpon>FrmCustomEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogon.resx">
+      <DependentUpon>FrmLogon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOption.resx">
+      <DependentUpon>FrmOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProgress.resx">
+      <DependentUpon>FrmProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmQuery.resx">
+      <DependentUpon>FrmQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectFormula.resx">
+      <DependentUpon>FrmSelectFormula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectLot.resx">
+      <DependentUpon>FrmSelectLot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectProd.resx">
+      <DependentUpon>FrmSelectProd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectProperty.resx">
+      <DependentUpon>FrmSelectProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectSeq.resx">
+      <DependentUpon>FrmSelectSeq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTest.resx">
+      <DependentUpon>FrmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpload.resx">
+      <DependentUpon>FrmUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\200px-Aiga_rightarrow.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Black-Right-Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Mtb">
+      <Guid>{0681D994-F2E6-4FC0-B441-6C1E9E328F57}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\banner1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\selectright1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\selectleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
