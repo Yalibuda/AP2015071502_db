@@ -310,6 +310,7 @@ namespace LCY_Database
         private void btCancel_Tool_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
         }
         private void cbPurpose_Tool_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -749,6 +750,7 @@ namespace LCY_Database
         private void btCancel_Plan_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
         }
         private void textTestPlanName_TextChanged(object sender, EventArgs e)
         {
@@ -834,6 +836,7 @@ namespace LCY_Database
         private void btCancel_Item_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
         }
         private void cbPurpose_Item_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1056,13 +1059,20 @@ namespace LCY_Database
                         count_item = cmnd.ExecuteNonQuery();
                     }
                 }
+                catch (ArgumentNullException augNullEx)
+                {
+                    MessageBox.Show(null,
+                          augNullEx.Message,
+                          "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(null,
                            "上傳時發生錯誤:" + ex.Message + "\r\n 請洽管理者",
                            "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }
+                }                
                 finally
                 {
                     MessageBox.Show(null,
@@ -1081,6 +1091,7 @@ namespace LCY_Database
             }
 
             DataTable dt_update = dt.GetChanges();
+            if (dt_update == null) return;
 
             try
             {
@@ -1102,6 +1113,10 @@ namespace LCY_Database
                     {
                         conn.Open();
                         cmnd.Connection = conn;
+                        if (dr["item_name"] == DBNull.Value | dr["unit"] == DBNull.Value)
+                        {
+                            throw new ArgumentNullException("項目名稱/單位不可為空白");
+                        }
                         cmnd.Parameters["name"].Value = dr["item_name"];
                         cmnd.Parameters["unit"].Value = dr["unit"];
                         cmnd.Parameters["type"].Value = dr["type"];
@@ -1376,6 +1391,7 @@ namespace LCY_Database
         private void btCancel_Result_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -1413,13 +1429,15 @@ namespace LCY_Database
             // 將 Excel 拆解成多份 csv 檔
             //
             StringBuilder iniContent = new StringBuilder();
-
+            string xx;
             foreach (Excel._Worksheet wsheet in wbook.Worksheets)
             {
                 if (wsheet.Name.EndsWith("_Upload"))
                 {
                     wsheet.Activate();
-                    remarkinfo.Add(wsheet.Name, wsheet.get_Range("B1").Value.ToString());
+                    //xx = wsheet.get_Range("B1").Value == null ? "aa" : wsheet.get_Range("B1").Value.ToString();
+                    //remarkinfo.Add(wsheet.Name, wsheet.get_Range("B1").Value.ToString());
+                    remarkinfo.Add(wsheet.Name, wsheet.get_Range("B1").Value == null ? "" : wsheet.get_Range("B1").Value.ToString());
                     backgroundWorker1.ReportProgress((progress) * 100 / maxprogress, "擷取 remark 資訊完成");
                     wsheet.get_Range("1:1").Delete();
                     backgroundWorker1.ReportProgress((progress) * 100 / maxprogress, "刪除 remark row 完成");
@@ -1695,6 +1713,7 @@ namespace LCY_Database
         private void btCancel_Customer_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
         }
         private void UploadCustomerToDB()
         {

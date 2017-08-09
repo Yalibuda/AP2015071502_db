@@ -477,9 +477,11 @@ namespace LCY_Database.LCY_DBTools
                     foreach (DataRow dr in _dt.Rows)
                     {
                         DataRow row = dt.NewRow();
+                        if (dr["p_name"] == DBNull.Value) throw new ArgumentNullException("項目名稱不可為空白");
                         row["p_name"] = dr["p_name"];
-                        row["type"] = dr["type"];
-                        row["unit"] = dr["unit"];
+                        //如果 unit/ type 為 null，則主動補上值，避免 DB 內查詢產生問題
+                        row["type"] = dr["type"] == DBNull.Value ? "NA" : dr["type"];
+                        row["unit"] = dr["unit"] == DBNull.Value ? "NA" : dr["unit"];
                         dt.Rows.Add(row);
                     }
                     DataSet d2 = ds.GetChanges();
@@ -645,7 +647,7 @@ namespace LCY_Database.LCY_DBTools
             sb.AppendLine(string.Join(",", columnNames));
             foreach (DataRow row in datatable.Rows)
             {
-                IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
+                IEnumerable<string> fields = row.ItemArray.Select(field => "\"" + field.ToString().Replace("\"", "\"\"") + "\"");
                 sb.AppendLine(string.Join(",", fields));
             }
             try
@@ -709,7 +711,7 @@ namespace LCY_Database.LCY_DBTools
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show(null,"無法連線至資料庫, 請使用\r\n資料庫工具箱> 選項\r\n確認伺服器位置是否正確, 或洽管理者。","", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(null, "無法連線至資料庫, 請使用\r\n資料庫工具箱> 選項\r\n確認伺服器位置是否正確, 或洽管理者。", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }

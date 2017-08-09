@@ -169,7 +169,7 @@ namespace LCY_Database
                 using (NpgsqlConnection conn = new NpgsqlConnection(_connString))
                 {
                     conn.Open();
-                    NpgsqlDataAdapter da = new NpgsqlDataAdapter("select customer_id, customer_cname from customer ", conn);
+                    NpgsqlDataAdapter da = new NpgsqlDataAdapter("select customer_id, customer_cname from customer order by customer_ename, customer_cname", conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     DataRow dr = dt.NewRow();
@@ -421,7 +421,7 @@ namespace LCY_Database
                     {
                         List<string> ctstring = new List<string>();
                         ctstring.Add("exp_sum_index text");
-                        foreach (string itemId in pivotInfo.Keys)
+                        foreach (string itemId in pivotInfo.Keys.OrderBy(x=>x))
                         {
                             ctstring.Add(@"""" + itemId + @""" text");
                         }

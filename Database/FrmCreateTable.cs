@@ -812,7 +812,7 @@ namespace LCY_Database
             {
                 conn.Open();
                 NpgsqlCommand cmnd = new NpgsqlCommand();
-                cmnd.CommandText = "select * from customer";
+                cmnd.CommandText = "select * from customer order by customer_ename, customer_cname";
 
                 cmnd.Connection = conn;
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmnd);
